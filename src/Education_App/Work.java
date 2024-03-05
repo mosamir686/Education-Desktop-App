@@ -1,0 +1,289 @@
+package Education_App;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.lang.Math;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Work extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField Ftxt;
+	private JLabel lblHeight;
+	private JTextField Dtxt;
+	private JButton btnBack;
+	private JButton btnBack_1;
+	private JLabel lblResult;
+	private JTextField Rtxt;
+	private JButton btnBack_2;
+	private JLabel lblPower;
+	private JLabel lblAngle;
+	private JTextField Atxt;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Work frame = new Work();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Work() {
+		setForeground(Color.BLACK);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 628, 436);
+		contentPane = new JPanel();
+		contentPane.setForeground(Color.BLACK);
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		Ftxt = new JTextField();
+		Ftxt.setForeground(Color.BLACK);
+		Ftxt.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		Ftxt.setBackground(Color.WHITE);
+		Ftxt.setBounds(219, 101, 290, 43);
+		contentPane.add(Ftxt);
+		Ftxt.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Force:");
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel.setBounds(97, 99, 97, 43);
+		contentPane.add(lblNewLabel);
+		
+		lblHeight = new JLabel("Displacement:");
+		lblHeight.setForeground(Color.BLACK);
+		lblHeight.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblHeight.setBounds(97, 153, 217, 40);
+		contentPane.add(lblHeight);
+		
+		Dtxt = new JTextField();
+		Dtxt.setForeground(Color.BLACK);
+		Dtxt.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		Dtxt.setBackground(Color.WHITE);
+		Dtxt.setColumns(10);
+		Dtxt.setBounds(324, 153, 185, 40);
+		contentPane.add(Dtxt);
+		
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Physics x = new Physics();
+				x.main();
+				dispose();
+			}
+		});
+		btnBack.setForeground(Color.BLACK);
+		btnBack.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnBack.setBackground(Color.WHITE);
+		btnBack.setBounds(97, 317, 98, 41);
+		contentPane.add(btnBack);
+		
+		btnBack_1 = new JButton("Result");
+		btnBack_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String F = Ftxt.getText().toString();
+				String D = Dtxt.getText().toString();
+				String A = Atxt.getText().toString();
+				boolean ckF=false;
+				boolean ckD=false;
+				
+				if (F.equals("")) {
+					 JOptionPane.showMessageDialog(null,"Force is undefined"); 
+				}else if (D.equals("")) {
+					 JOptionPane.showMessageDialog(null,"Displacement is undefined"); 
+			    }else if(A.equals("")) {
+			    	for (int i = 0; i < F.length(); i++){
+			    		if (Character.isDigit(F.charAt(i))) {
+			    			ckF=true;
+			    		}else {
+							ckF=false;
+						}
+			    	}
+
+					for (int i2 = 0; i2 < D.length(); i2++){
+						if(Character.isDigit(D.charAt(i2))) {
+							ckD=true;
+						}else {
+							ckD=false;
+						}
+					}
+					if (ckF==true&&ckD==true) {
+					double f=Double.parseDouble(Ftxt.getText());
+					double d=Double.parseDouble(Dtxt.getText());
+					if (f<0) {
+						 JOptionPane.showMessageDialog(null,f+": Negative Refused"); 	
+					 	
+					}else if (d<0) {
+						 JOptionPane.showMessageDialog(null,d+": Negative Refused"); 	
+					}else {
+					double W =f*d;
+						String x=String.valueOf(W);
+					Rtxt.setText(x+" Joule");		
+					}
+							}else if (ckF==false) {
+								 JOptionPane.showMessageDialog(null, F+" is undefined, Please Enter Number :)"); 	
+							}else if (ckD==false) {
+								 JOptionPane.showMessageDialog(null, D+" is undefined, Please Enter Number :)"); 	
+							}
+			    }else if(A.equals("90")) {
+			    	for (int i = 0; i < F.length(); i++){
+			    		if (Character.isDigit(F.charAt(i))) {
+			    			ckF=true;
+			    		}else {
+							ckF=false;
+						}
+			    	}
+
+					for (int i2 = 0; i2 < D.length(); i2++){
+						if(Character.isDigit(D.charAt(i2))) {
+							ckD=true;
+						}else {
+							ckD=false;
+						}
+					}
+					if (ckF==true&&ckD==true) {
+					double f=Double.parseDouble(Ftxt.getText());
+					double d=Double.parseDouble(Dtxt.getText());
+					double a =Double.parseDouble(Atxt.getText()) ;
+					double cos= Math.toRadians(a);
+					if (f<0) {
+						 JOptionPane.showMessageDialog(null,f+": Negative Refused"); 	
+					 	
+					}else if (d<0) {
+						 JOptionPane.showMessageDialog(null,d+": Negative Refused"); 	
+					}else if(a<0){
+						 JOptionPane.showMessageDialog(null,a+": Negative Refused"); 	
+					}else{
+						Rtxt.setText("0 Joule");		
+		
+					}
+							}else if (ckF==false) {
+								 JOptionPane.showMessageDialog(null, F+" is undefined, Please Enter Number :)"); 	
+							}else if (ckD==false) {
+								 JOptionPane.showMessageDialog(null, D+" is undefined, Please Enter Number :)"); 	
+							}
+				}else {
+				
+			    	for (int i = 0; i < F.length(); i++){
+			    		if (Character.isDigit(F.charAt(i))) {
+			    			ckF=true;
+			    		}else {
+							ckF=false;
+						}
+			    	}
+
+					for (int i2 = 0; i2 < D.length(); i2++){
+						if(Character.isDigit(D.charAt(i2))) {
+							ckD=true;
+						}else {
+							ckD=false;
+						}
+					}
+					if (ckF==true&&ckD==true) {
+					double f=Double.parseDouble(Ftxt.getText());
+					double d=Double.parseDouble(Dtxt.getText());
+					double a =Double.parseDouble(Atxt.getText()) ;
+					double cos= Math.toRadians(a);
+					if (f<0) {
+						 JOptionPane.showMessageDialog(null,f+": Negative Refused"); 	
+					 	
+					}else if (d<0) {
+						 JOptionPane.showMessageDialog(null,d+": Negative Refused"); 	
+					}else {
+					double W =f*d*Math.cos(cos);
+						String x=String.valueOf(W);
+					Rtxt.setText(x+" Joule");		
+					}
+							}else if (ckF==false) {
+								 JOptionPane.showMessageDialog(null, F+" is undefined, Please Enter Number :)"); 	
+							}else if (ckD==false) {
+								 JOptionPane.showMessageDialog(null, D+" is undefined, Please Enter Number :)"); 	
+							}	
+			    }
+
+			    	}  
+			
+		});
+		btnBack_1.setForeground(Color.BLACK);
+		btnBack_1.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnBack_1.setBackground(Color.WHITE);
+		btnBack_1.setBounds(448, 318, 112, 39);
+		contentPane.add(btnBack_1);
+		
+		lblResult = new JLabel("Result:");
+		lblResult.setForeground(Color.BLACK);
+		lblResult.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblResult.setBounds(97, 251, 112, 40);
+		contentPane.add(lblResult);
+		
+		Rtxt = new JTextField();
+		Rtxt.setForeground(Color.RED);
+		Rtxt.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		Rtxt.setBackground(Color.WHITE);
+		Rtxt.setEditable(false);
+		Rtxt.setColumns(10);
+		Rtxt.setBounds(219, 254, 290, 40);
+		contentPane.add(Rtxt);
+		
+		btnBack_2 = new JButton("Clear");
+		btnBack_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ftxt.setText("");
+				Dtxt.setText("");
+				Atxt.setText("");
+				Rtxt.setText("");
+			}
+		});
+		btnBack_2.setForeground(Color.BLACK);
+		btnBack_2.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnBack_2.setBackground(Color.WHITE);
+		btnBack_2.setBounds(270, 318, 112, 39);
+		contentPane.add(btnBack_2);
+		
+		lblPower = new JLabel("Work");
+		lblPower.setForeground(Color.BLACK);
+		lblPower.setFont(new Font("Daniela", Font.PLAIN, 50));
+		lblPower.setBounds(262, 29, 120, 46);
+		contentPane.add(lblPower);
+		
+		lblAngle = new JLabel("Angle:");
+		lblAngle.setForeground(Color.BLACK);
+		lblAngle.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblAngle.setBounds(97, 200, 97, 40);
+		contentPane.add(lblAngle);
+		
+		Atxt = new JTextField();
+		Atxt.setForeground(Color.BLACK);
+		Atxt.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		Atxt.setColumns(10);
+		Atxt.setBackground(Color.WHITE);
+		Atxt.setBounds(219, 200, 290, 40);
+		contentPane.add(Atxt);
+	}
+}
